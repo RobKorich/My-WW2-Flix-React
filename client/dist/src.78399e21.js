@@ -30192,17 +30192,9 @@ var MovieView = /*#__PURE__*/function (_React$Component) {
   }
 
   _createClass(MovieView, [{
-    key: "handleBack",
-    value: function handleBack() {
-      this.props.unsetMovie();
-    }
-  }, {
     key: "render",
     value: function render() {
-      var _this2 = this;
-
       var movie = this.props.movie;
-      console.log(this.props);
       if (!movie) return null;
       return _react.default.createElement("div", {
         className: "movie-view"
@@ -30234,9 +30226,7 @@ var MovieView = /*#__PURE__*/function (_React$Component) {
       }, "Director: "), _react.default.createElement("span", {
         className: "value"
       }, movie.Director.Name)), _react.default.createElement("div", null, _react.default.createElement("button", {
-        onClick: function onClick() {
-          return _this2.handleBack();
-        }
+        onClick: this.props.unsetMovie
       }, "Back")));
     }
   }]);
@@ -30299,6 +30289,12 @@ var MainView = /*#__PURE__*/function (_React$Component) {
     // so React can initialize it
     _this = _super.call(this, props); // Initialize the state to an empty object so we can destructure it later
 
+    _this.onBackClick = function () {
+      _this.setState({
+        selectedMovie: null
+      });
+    };
+
     _this.state = {
       movies: null,
       selectedMovie: null
@@ -30329,13 +30325,6 @@ var MainView = /*#__PURE__*/function (_React$Component) {
       });
     }
   }, {
-    key: "onBackClick",
-    value: function onBackClick() {
-      this.setState({
-        selectedMovie: null
-      });
-    }
-  }, {
     key: "render",
     value: function render() {
       var _this3 = this;
@@ -30353,9 +30342,7 @@ var MainView = /*#__PURE__*/function (_React$Component) {
         className: "main-view"
       }, selectedMovie ? _react.default.createElement(_movieView.MovieView, {
         movie: selectedMovie,
-        unsetMovie: function unsetMovie() {
-          return _this3.onBackClick();
-        }
+        unsetMovie: this.onBackClick
       }) : this.state.movies.map(function (movie) {
         return _react.default.createElement(_movieCard.MovieCard, {
           key: movie._id,
@@ -30533,7 +30520,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "50276" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "51635" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};

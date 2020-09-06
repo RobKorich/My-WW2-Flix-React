@@ -9,13 +9,8 @@ export class MovieView extends React.Component {
 
   }
 
-  handleBack() {
-    this.props.unsetMovie();
-  }
-
   render() {
     const { movie } = this.props;
-    console.log(this.props);
 
     if (!movie) return null;
 
@@ -40,7 +35,7 @@ export class MovieView extends React.Component {
           <span className="value">{movie.Director.Name}</span>
         </div>
         <div>
-          <button onClick={() => this.handleBack()}>Back</button>
+          <button onClick={this.props.unsetMovie}>Back</button>
         </div>
        </div>
 
