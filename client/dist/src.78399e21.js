@@ -30181,12 +30181,12 @@ var MovieView = /*#__PURE__*/function (_React$Component) {
 
   var _super = _createSuper(MovieView);
 
-  function MovieView(props) {
+  function MovieView() {
     var _this;
 
     _classCallCheck(this, MovieView);
 
-    _this = _super.call(this, props);
+    _this = _super.call(this);
     _this.state = {};
     return _this;
   }
@@ -30194,7 +30194,9 @@ var MovieView = /*#__PURE__*/function (_React$Component) {
   _createClass(MovieView, [{
     key: "render",
     value: function render() {
-      var movie = this.props.movie;
+      var _this$props = this.props,
+          movie = _this$props.movie,
+          unsetMovie = _this$props.unsetMovie;
       if (!movie) return null;
       return _react.default.createElement("div", {
         className: "movie-view"
@@ -30226,7 +30228,7 @@ var MovieView = /*#__PURE__*/function (_React$Component) {
       }, "Director: "), _react.default.createElement("span", {
         className: "value"
       }, movie.Director.Name)), _react.default.createElement("div", null, _react.default.createElement("button", {
-        onClick: this.props.unsetMovie
+        onClick: unsetMovie
       }, "Back")));
     }
   }]);
@@ -30280,14 +30282,14 @@ var MainView = /*#__PURE__*/function (_React$Component) {
 
   var _super = _createSuper(MainView);
 
-  function MainView(props) {
+  function MainView() {
     var _this;
 
     _classCallCheck(this, MainView);
 
     // Call the superclass constructor
     // so React can initialize it
-    _this = _super.call(this, props); // Initialize the state to an empty object so we can destructure it later
+    _this = _super.call(this); // Initialize the state to an empty object so we can destructure it later
 
     _this.onBackClick = function () {
       _this.setState({
@@ -30343,14 +30345,16 @@ var MainView = /*#__PURE__*/function (_React$Component) {
       }, selectedMovie ? _react.default.createElement(_movieView.MovieView, {
         movie: selectedMovie,
         unsetMovie: this.onBackClick
-      }) : this.state.movies.map(function (movie) {
+      }) //movie and unsetMovie are props to MovieView
+      : this.state.movies.map(function (movie) {
         return _react.default.createElement(_movieCard.MovieCard, {
           key: movie._id,
           movie: movie,
           onClick: function onClick(movie) {
             return _this3.onMovieClick(movie);
           }
-        });
+        }) //movie and onClick are props to MovieCard
+        ;
       }));
     }
   }]);
@@ -30520,7 +30524,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "51635" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "52247" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};

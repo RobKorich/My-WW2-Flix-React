@@ -2,15 +2,15 @@ import React from 'react';
 
 export class MovieView extends React.Component {
 
-  constructor(props) {
-    super(props);
+  constructor() {
+    super();
 
     this.state = {};
 
   }
 
   render() {
-    const { movie } = this.props;
+    const { movie, unsetMovie } = this.props;
 
     if (!movie) return null;
 
@@ -35,7 +35,7 @@ export class MovieView extends React.Component {
           <span className="value">{movie.Director.Name}</span>
         </div>
         <div>
-          <button onClick={this.props.unsetMovie}>Back</button>
+          <button onClick={unsetMovie}>Back</button>
         </div>
        </div>
 
