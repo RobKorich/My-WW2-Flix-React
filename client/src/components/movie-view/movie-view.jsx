@@ -1,23 +1,21 @@
 import React from 'react';
-import { MainView } from '../main-view/main-view';
 
 export class MovieView extends React.Component {
 
-  constructor() {
-    super();
+  constructor(props) {
+    super(props);
 
     this.state = {};
+
   }
 
-  unsetMovie() {
-    this.setState({
-      movies: null
-    });
+  handleBack() {
+    this.props.unsetMovie();
   }
 
-
- render() {
+  render() {
     const { movie } = this.props;
+    console.log(this.props);
 
     if (!movie) return null;
 
@@ -42,7 +40,7 @@ export class MovieView extends React.Component {
           <span className="value">{movie.Director.Name}</span>
         </div>
         <div>
-          <button onClick={this.props.unsetMovie}>Back</button>
+          <button onClick={() => this.handleBack()}>Back</button>
         </div>
        </div>
 

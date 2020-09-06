@@ -30152,8 +30152,6 @@ exports.MovieView = void 0;
 
 var _react = _interopRequireDefault(require("react"));
 
-var _mainView = require("../main-view/main-view");
-
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
@@ -30183,27 +30181,28 @@ var MovieView = /*#__PURE__*/function (_React$Component) {
 
   var _super = _createSuper(MovieView);
 
-  function MovieView() {
+  function MovieView(props) {
     var _this;
 
     _classCallCheck(this, MovieView);
 
-    _this = _super.call(this);
+    _this = _super.call(this, props);
     _this.state = {};
     return _this;
   }
 
   _createClass(MovieView, [{
-    key: "unsetMovie",
-    value: function unsetMovie() {
-      this.setState({
-        movies: null
-      });
+    key: "handleBack",
+    value: function handleBack() {
+      this.props.unsetMovie();
     }
   }, {
     key: "render",
     value: function render() {
+      var _this2 = this;
+
       var movie = this.props.movie;
+      console.log(this.props);
       if (!movie) return null;
       return _react.default.createElement("div", {
         className: "movie-view"
@@ -30235,7 +30234,9 @@ var MovieView = /*#__PURE__*/function (_React$Component) {
       }, "Director: "), _react.default.createElement("span", {
         className: "value"
       }, movie.Director.Name)), _react.default.createElement("div", null, _react.default.createElement("button", {
-        onClick: this.props.unsetMovie
+        onClick: function onClick() {
+          return _this2.handleBack();
+        }
       }, "Back")));
     }
   }]);
@@ -30244,7 +30245,7 @@ var MovieView = /*#__PURE__*/function (_React$Component) {
 }(_react.default.Component);
 
 exports.MovieView = MovieView;
-},{"react":"../node_modules/react/index.js","../main-view/main-view":"components/main-view/main-view.jsx"}],"components/main-view/main-view.jsx":[function(require,module,exports) {
+},{"react":"../node_modules/react/index.js"}],"components/main-view/main-view.jsx":[function(require,module,exports) {
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -30289,14 +30290,14 @@ var MainView = /*#__PURE__*/function (_React$Component) {
 
   var _super = _createSuper(MainView);
 
-  function MainView() {
+  function MainView(props) {
     var _this;
 
     _classCallCheck(this, MainView);
 
     // Call the superclass constructor
     // so React can initialize it
-    _this = _super.call(this); // Initialize the state to an empty object so we can destructure it later
+    _this = _super.call(this, props); // Initialize the state to an empty object so we can destructure it later
 
     _this.state = {
       movies: null,
@@ -30328,6 +30329,13 @@ var MainView = /*#__PURE__*/function (_React$Component) {
       });
     }
   }, {
+    key: "onBackClick",
+    value: function onBackClick() {
+      this.setState({
+        selectedMovie: null
+      });
+    }
+  }, {
     key: "render",
     value: function render() {
       var _this3 = this;
@@ -30344,8 +30352,11 @@ var MainView = /*#__PURE__*/function (_React$Component) {
       return _react.default.createElement("div", {
         className: "main-view"
       }, selectedMovie ? _react.default.createElement(_movieView.MovieView, {
-        movie: selectedMovie
-      }) : movies.map(function (movie) {
+        movie: selectedMovie,
+        unsetMovie: function unsetMovie() {
+          return _this3.onBackClick();
+        }
+      }) : this.state.movies.map(function (movie) {
         return _react.default.createElement(_movieCard.MovieCard, {
           key: movie._id,
           movie: movie,
@@ -30522,7 +30533,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "58954" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "50276" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};

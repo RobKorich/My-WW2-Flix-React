@@ -6,10 +6,10 @@ import { MovieView } from '../movie-view/movie-view';
 
 export class MainView extends React.Component {
 
-  constructor() {
+  constructor(props) {
     // Call the superclass constructor
     // so React can initialize it
-    super();
+    super(props);
 
     // Initialize the state to an empty object so we can destructure it later
     this.state = {
@@ -38,6 +38,12 @@ export class MainView extends React.Component {
     });
   }
 
+  onBackClick() {
+    this.setState({
+      selectedMovie: null
+    });
+  }
+
   render() {
     // If the state isn't initialized, this will throw on runtime
     // before the data is initially loaded
@@ -49,8 +55,8 @@ export class MainView extends React.Component {
     return (
       <div className="main-view">
         {selectedMovie
-            ? <MovieView movie={selectedMovie}/>
-            : movies.map(movie => (
+            ? <MovieView movie={selectedMovie} unsetMovie={() => this.onBackClick()}/>
+            : this.state.movies.map(movie => (
               <MovieCard key={movie._id} movie={movie} onClick={movie => this.onMovieClick(movie)}/>
             ))
         }
