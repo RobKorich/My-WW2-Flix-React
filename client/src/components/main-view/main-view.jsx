@@ -3,6 +3,7 @@ import axios from 'axios';
 
 import { MovieCard } from '../movie-card/movie-card';
 import { MovieView } from '../movie-view/movie-view';
+import { LoginView } from '../login-view/login-view';
 
 export class MainView extends React.Component {
 
@@ -15,6 +16,7 @@ export class MainView extends React.Component {
     this.state = {
       movies: null,
       selectedMovie: null,
+      user: null
     };
   }
 
@@ -32,26 +34,35 @@ export class MainView extends React.Component {
       });
   }
 
-  
+  //Click function for clicking on MovieCard in MainView to show MovieView
   onMovieClick(movie) {
     this.setState({
       selectedMovie: movie
     });
   }
 
+  //Click function for back button on MovieView (sets state back to MainView state)
   onBackClick = () => {
     this.setState({
       selectedMovie: null
     });
   }
 
+  onLoggedIn(user) {
+    this.setState({
+      user
+    });
+  }
+
   render() {
     // If the state isn't initialized, this will throw on runtime
     // before the data is initially loaded
-    const { movies, selectedMovie } = this.state;
+    const { movies, selectedMovie, user } = this.state;
+
+    //if (!user) return <LoginView onLoggedIn={user => this.onLoggedIn(user)} />;
 
     // Before the movies have been loaded
-    if (!movies) return <div className="main-view"/>;
+    if (!movies) return <div className="main-view">Loading Movies...</div>;
 
     return (
       <div className="main-view">
