@@ -1,3 +1,13 @@
+.button {
+  background-color: #4b5320;
+  border-color: #4b5320;
+}
+
+.button:hover {
+  background-color: #4b5320;
+  border-color: #4b5320;
+  transform: scale(1.1);
+}
 .my-flix {
   color: steelblue;
 }
