@@ -31688,7 +31688,7 @@ var MovieCard = /*#__PURE__*/function (_React$Component) {
           _onClick = _this$props.onClick;
       return _react.default.createElement(_Card.default, {
         style: {
-          width: '16rem'
+          width: '25rem'
         }
       }, _react.default.createElement(_Card.default.Img, {
         variant: "top",
@@ -33388,7 +33388,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "61952" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "63598" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};

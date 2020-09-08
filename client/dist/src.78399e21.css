@@ -11,6 +11,7 @@
 
 .card {
   margin: auto;
+  margin-top: 20px;
 }
 .button {
   background-color: #4b5320;
@@ -25,6 +26,7 @@
 
 .cardMovieView {
   margin: auto;
+  margin-top: 20px;
 }
 .button {
   background-color: #4b5320;
