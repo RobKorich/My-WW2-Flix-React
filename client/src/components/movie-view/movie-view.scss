@@ -5,13 +5,15 @@ $button: #4b5320;
   border-color: $button;
 }
 
-.button:hover {
-  background-color: $button;
+.button:hover,
+.button:active {
+  background-color: $button !important;
   border-color: $button;
-  transform: scale(1.1);
+  transform: scale(1.02);
 }
 
 .cardMovieView {
   margin: auto;
-  margin-top: 20px;
+  margin-top: 70px;
+  flex-direction: row;
 }

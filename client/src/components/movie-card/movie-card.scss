@@ -8,10 +8,16 @@ $button: #4b5320;
 .button:hover {
   background-color: $button;
   border-color: $button;
-  transform: scale(1.1);
+  transform: scale(1.02);
 }
 
 .card {
   margin: auto;
-  margin-top: 20px;
+  margin-top: 70px;
+  box-shadow: 0 0 10px $button;
+  border-color: $button;
+}
+
+.movie-card {
+  margin-right: 30px;
 }

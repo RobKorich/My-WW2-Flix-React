@@ -4,6 +4,10 @@ import axios from 'axios';
 import { MovieCard } from '../movie-card/movie-card';
 import { MovieView } from '../movie-view/movie-view';
 import { LoginView } from '../login-view/login-view';
+import Navbar from 'react-bootstrap/Navbar';
+import Nav from 'react-bootstrap/Nav';
+
+import './main-view.scss';
 
 export class MainView extends React.Component {
 
@@ -65,7 +69,21 @@ export class MainView extends React.Component {
     if (!movies) return <div className="main-view">Loading Movies...</div>;
 
     return (
-      <div className="main-view">
+      <div className='main-view'>
+        <Navbar className='navbar' bg='dark' fixed='top' variant='dark' expand='lg'>
+          <Navbar.Brand href='#home'>
+            <img src='https://www.svgrepo.com/show/136105/movie-roll.svg' className='icon' width='30' height='30' alt='My WW2 Flix Logo'/>
+            My WW2 Flix
+          </Navbar.Brand>
+          <Navbar.Toggle aria-controls='basic-navbar-nav'/>
+          <Navbar.Collapse id='basic-navbar-nav'>
+            <Nav className='ml-auto'>
+              <Nav.Link href='#home'>Home</Nav.Link>
+              <Nav.Link href='#profile'>Profile</Nav.Link>
+              <Nav.Link href='#about'>About</Nav.Link>
+            </Nav>
+          </Navbar.Collapse>
+        </Navbar>
         {selectedMovie
             ? <MovieView movie={selectedMovie} unsetMovie={this.onBackClick}/> //movie and unsetMovie are props to MovieView
             : this.state.movies.map(movie => (
