@@ -4,6 +4,7 @@ import axios from 'axios';
 import { MovieCard } from '../movie-card/movie-card';
 import { MovieView } from '../movie-view/movie-view';
 import { LoginView } from '../login-view/login-view';
+import { RegistrationView } from '../registration-view/registration-view';
 import Navbar from 'react-bootstrap/Navbar';
 import Nav from 'react-bootstrap/Nav';
 
@@ -20,7 +21,7 @@ export class MainView extends React.Component {
     this.state = {
       movies: null,
       selectedMovie: null,
-      user: null
+      user: null,
     };
   }
 
@@ -81,6 +82,7 @@ export class MainView extends React.Component {
               <Nav.Link href='#home'>Home</Nav.Link>
               <Nav.Link href='#profile'>Profile</Nav.Link>
               <Nav.Link href='#about'>About</Nav.Link>
+              <Nav.Link href='#logout'>Logout</Nav.Link>
             </Nav>
           </Navbar.Collapse>
         </Navbar>

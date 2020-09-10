@@ -2,12 +2,14 @@ import React, { useState } from 'react';
 import Form from 'react-bootstrap/Form';
 import Button from 'react-bootstrap/Button';
 import Card from 'react-bootstrap/Card';
+import { RegistrationView } from '../registration-view/registration-view';
 
 import './login-view.scss';
 
 export function LoginView(props) {
   const [ username, setUsername ] = useState('');
   const [ password, setPassword ] = useState('');
+  const [ registering, setRegistering ] = useState(false);
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -16,8 +18,11 @@ export function LoginView(props) {
     props.onLoggedIn(username);
   };
 
-  return (
-    <div>
+    if (registering) {
+      return <RegistrationView />; 
+    } else {
+      return (
+      <div>
       <h2 className='login-title'>My WW2 Flix Login</h2>
       <Card className='login-card' style={{ width: '30rem' }}>
         <Form>
@@ -35,25 +40,15 @@ export function LoginView(props) {
               <Form.Label>Password</Form.Label>
               <Form.Control type="password" placeholder="Enter password" value={password} onChange={e => setPassword(e.target.value)}/>
             </Form.Group>
-
+            <Button onClick={() => setRegistering(true)} variant='link'>Create account</Button>
+            <br/>
+            <br/>
             <Button className="button" variant="primary" type="submit" onClick={handleSubmit}>
               Submit
             </Button>
         </Form>
       </Card>
     </div>
-
-    //without bootstrap
-    /*<form>
-      <label>
-        Username:
-        <input type="text" value={username} onChange={e => setUsername(e.target.value)} />
-      </label>
-      <label>
-        Password:
-        <input type="password" value={password} onChange={e => setPassword(e.target.value)} />
-      </label>
-      <button type="button" onClick={handleSubmit}>Submit</button>
-    </form>*/
-  );
+    )
+  }
 }
