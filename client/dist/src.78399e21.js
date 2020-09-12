@@ -31710,7 +31710,6 @@ var MovieCard = /*#__PURE__*/function (_React$Component) {
 
 exports.MovieCard = MovieCard;
 MovieCard.propTypes = {
-  //????
   movie: _propTypes.default.shape({
     Title: _propTypes.default.string.isRequired,
     Description: _propTypes.default.string.isRequired,
@@ -31984,31 +31983,7 @@ var MovieView = /*#__PURE__*/function (_React$Component) {
         className: "button",
         onClick: unsetMovie,
         variant: "primary"
-      }, "Back")))))) //without bootstrap
-
-      /*<div className="movie-view">
-        <img className="movie-poster" src={movie.ImagePath} />
-        <div className="movie-title">
-          <span className="label">Title: </span>
-          <span className="value">{movie.Title}</span>
-        </div>
-        <div className="movie-description">
-          <span className="label">Description: </span>
-          <span className="value">{movie.Description}</span>
-        </div>
-          <div className="movie-genre">
-          <span className="label">Genre: </span>
-          <span className="value">{movie.Genre.Name}</span>
-        </div>
-        <div className="movie-director">
-          <span className="label">Director: </span>
-          <span className="value">{movie.Director.Name}</span>
-        </div>
-        <div>
-          <button onClick={unsetMovie}>Back</button>
-        </div>
-       </div>*/
-      ;
+      }, "Back"))))));
     }
   }]);
 
@@ -33225,12 +33200,8 @@ function LoginView(props) {
   var _useState3 = (0, _react.useState)(''),
       _useState4 = _slicedToArray(_useState3, 2),
       password = _useState4[0],
-      setPassword = _useState4[1];
+      setPassword = _useState4[1]; //const [ registering, setRegistering ] = useState(false);  moved to user-view
 
-  var _useState5 = (0, _react.useState)(false),
-      _useState6 = _slicedToArray(_useState5, 2),
-      registering = _useState6[0],
-      setRegistering = _useState6[1];
 
   var handleSubmit = function handleSubmit(e) {
     e.preventDefault();
@@ -36149,7 +36120,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "60154" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "52137" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};

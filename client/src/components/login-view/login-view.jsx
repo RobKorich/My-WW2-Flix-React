@@ -9,7 +9,7 @@ import './login-view.scss';
 export function LoginView(props) {
   const [ username, setUsername ] = useState('');
   const [ password, setPassword ] = useState('');
-  const [ registering, setRegistering ] = useState(false);
+  //const [ registering, setRegistering ] = useState(false);  moved to user-view
 
   const handleSubmit = (e) => {
     e.preventDefault();
