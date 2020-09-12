@@ -7,9 +7,17 @@ import './user-view.scss';
 export function UserView() {
   const [ registering, setRegistering ] = useState(false);
 
+  setRegistering() {
+    this.setState({
+      registering: true
+    });
+  }
+  
+
   if (registering) {
     return <RegistrationView />;
     } else {
-    return <LoginView/>;
-    }
+    return <LoginView clickRegister={this.setRegistering}/>;
   }
+}
+

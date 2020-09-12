@@ -49,6 +49,6 @@ export function LoginView(props) {
         </Form>
       </Card>
     </div>
-    )
+    );
   }
 }
