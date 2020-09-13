@@ -18,11 +18,8 @@ export function LoginView(props) {
     props.onLoggedIn(username);
   };
 
-    if (registering) {
-      return <RegistrationView />; 
-    } else {
-      return (
-      <div>
+  return (
+    <div>
       <h2 className='login-title'>My WW2 Flix Login</h2>
       <Card className='login-card' style={{ width: '30rem' }}>
         <Form>
@@ -40,7 +37,7 @@ export function LoginView(props) {
               <Form.Label>Password</Form.Label>
               <Form.Control type="password" placeholder="Enter password" value={password} onChange={e => setPassword(e.target.value)}/>
             </Form.Group>
-            <Button onClick={() => setRegistering(true)} variant='link'>Create account</Button>
+            <Button onClick={() => onRegisterClick(true)} variant='link'>Create account</Button>
             <br/>
             <br/>
             <Button className="button" variant="primary" type="submit" onClick={handleSubmit}>
@@ -49,6 +46,5 @@ export function LoginView(props) {
         </Form>
       </Card>
     </div>
-    );
-  }
+  );
 }

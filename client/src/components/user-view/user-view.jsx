@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
-import { LoginView } from './login-view/login-view';
-import { RegistrationView } from  './registration-view/registration-view';
+import { LoginView } from '../login-view/login-view';
+import { RegistrationView } from  '../registration-view/registration-view';
 
 import './user-view.scss';
 
@@ -10,7 +10,7 @@ export function UserView() {
   if (registering) {
     return <RegistrationView />;
     } else {
-    return <LoginView onClick={() => setRegistering(true)}/>;
+    return <LoginView onRegisterClick={() => setRegistering(true)}/>;
   }
 }
 
