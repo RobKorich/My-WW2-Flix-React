@@ -10,7 +10,7 @@ export function UserView() {
   if (registering) {
     return <RegistrationView />;
     } else {
-    return <LoginView onClick={this.setRegistering(true)}/>;
+    return <LoginView onClick={() => setRegistering(true)}/>;
   }
 }
 
