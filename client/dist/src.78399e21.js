@@ -31992,7 +31992,6 @@ var MovieView = /*#__PURE__*/function (_React$Component) {
 
 exports.MovieView = MovieView;
 MovieView.propTypes = {
-  //????
   movie: _propTypes.default.shape({
     Title: _propTypes.default.string.isRequired,
     Description: _propTypes.default.string.isRequired,
@@ -33073,7 +33072,10 @@ function _iterableToArrayLimit(arr, i) { if (typeof Symbol === "undefined" || !(
 
 function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
 
-function LoginView(props) {
+function LoginView(_ref) {
+  var onLoggedIn = _ref.onLoggedIn,
+      onCreateAccountClick = _ref.onCreateAccountClick;
+
   var _useState = (0, _react.useState)(''),
       _useState2 = _slicedToArray(_useState, 2),
       username = _useState2[0],
@@ -33082,14 +33084,13 @@ function LoginView(props) {
   var _useState3 = (0, _react.useState)(''),
       _useState4 = _slicedToArray(_useState3, 2),
       password = _useState4[0],
-      setPassword = _useState4[1]; //const [ registering, setRegistering ] = useState(false);  moved to user-view
-
+      setPassword = _useState4[1];
 
   var handleSubmit = function handleSubmit(e) {
     e.preventDefault();
     console.log(username, password); // Send a request to the server for authentication then call props.onLoggedIn(username)
 
-    props.onLoggedIn(username);
+    onLoggedIn(username);
   };
 
   return _react.default.createElement("div", null, _react.default.createElement("h2", {
@@ -33119,7 +33120,7 @@ function LoginView(props) {
     }
   })), _react.default.createElement(_Button.default, {
     onClick: function onClick() {
-      return props.onCreateAccountClick();
+      return onCreateAccountClick();
     },
     variant: "link"
   }, "Create account"), _react.default.createElement("br", null), _react.default.createElement("br", null), _react.default.createElement(_Button.default, {
@@ -33282,7 +33283,9 @@ function _iterableToArrayLimit(arr, i) { if (typeof Symbol === "undefined" || !(
 
 function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
 
-function UserView(props) {
+function UserView(_ref) {
+  var onLoggedIn = _ref.onLoggedIn;
+
   var _useState = (0, _react.useState)(false),
       _useState2 = _slicedToArray(_useState, 2),
       registering = _useState2[0],
@@ -33294,7 +33297,8 @@ function UserView(props) {
     return _react.default.createElement(_loginView.LoginView, {
       onCreateAccountClick: function onCreateAccountClick() {
         return setRegistering(true);
-      }
+      },
+      onLoggedIn: onLoggedIn
     });
   }
 }
@@ -36005,8 +36009,6 @@ var MainView = /*#__PURE__*/function (_React$Component) {
     value: function render() {
       var _this3 = this;
 
-      // If the state isn't initialized, this will throw on runtime
-      // before the data is initially loaded
       var _this$state = this.state,
           movies = _this$state.movies,
           selectedMovie = _this$state.selectedMovie,
@@ -36166,7 +36168,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "57575" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "59548" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};

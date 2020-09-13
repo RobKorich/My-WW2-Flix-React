@@ -59,8 +59,6 @@ export class MainView extends React.Component {
   }
 
   render() {
-    // If the state isn't initialized, this will throw on runtime
-    // before the data is initially loaded
     const { movies, selectedMovie, user } = this.state;
 
     if (!user) return <UserView onLoggedIn={user => this.onLoggedIn(user)} />; //changed to UserView from LoginView

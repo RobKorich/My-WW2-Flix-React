@@ -5,16 +5,15 @@ import Card from 'react-bootstrap/Card';
 
 import './login-view.scss';
 
-export function LoginView(props) {
+export function LoginView({onLoggedIn, onCreateAccountClick}) {
   const [ username, setUsername ] = useState('');
   const [ password, setPassword ] = useState('');
-  //const [ registering, setRegistering ] = useState(false);  moved to user-view
 
   const handleSubmit = (e) => {
     e.preventDefault();
     console.log(username, password);
     // Send a request to the server for authentication then call props.onLoggedIn(username)
-    props.onLoggedIn(username);
+    onLoggedIn(username);
   };
 
   return (
@@ -36,7 +35,7 @@ export function LoginView(props) {
               <Form.Label>Password</Form.Label>
               <Form.Control type="password" placeholder="Enter password" value={password} onChange={e => setPassword(e.target.value)}/>
             </Form.Group>
-            <Button onClick={() => props.onCreateAccountClick()} variant='link'>Create account</Button>
+            <Button onClick={() => onCreateAccountClick()} variant='link'>Create account</Button>
             <br/>
             <br/>
             <Button className="button" variant="primary" type="submit" onClick={handleSubmit}>
