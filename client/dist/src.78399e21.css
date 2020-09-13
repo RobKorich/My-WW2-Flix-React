@@ -36,15 +36,6 @@
   margin-top: 70px;
   flex-direction: row;
 }
-.registration-title {
-  color: #4b5320;
-  text-align: center;
-  margin-top: 30px;
-}
-
-.registration-card {
-  max-width: 500px;
-}
 .button {
   background-color: #4b5320;
   border-color: #4b5320;
@@ -65,6 +56,15 @@ Form {
   color: #4b5320;
   text-align: center;
   margin-top: 30px;
+}
+.registration-title {
+  color: #4b5320;
+  text-align: center;
+  margin-top: 30px;
+}
+
+.registration-card {
+  max-width: 500px;
 }
 .navbar {
   background-color: #4b5320 !important;

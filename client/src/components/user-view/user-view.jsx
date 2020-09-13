@@ -4,13 +4,13 @@ import { RegistrationView } from  '../registration-view/registration-view';
 
 import './user-view.scss';
 
-export function UserView() {
+export function UserView(props) {
   const [ registering, setRegistering ] = useState(false);
 
   if (registering) {
     return <RegistrationView />;
     } else {
-    return <LoginView onRegisterClick={() => setRegistering(true)}/>;
+    return <LoginView onCreateAccountClick={() => setRegistering(true)}/>;
   }
 }
 

@@ -2,7 +2,6 @@ import React, { useState } from 'react';
 import Form from 'react-bootstrap/Form';
 import Button from 'react-bootstrap/Button';
 import Card from 'react-bootstrap/Card';
-import { RegistrationView } from '../registration-view/registration-view';
 
 import './login-view.scss';
 
@@ -37,7 +36,7 @@ export function LoginView(props) {
               <Form.Label>Password</Form.Label>
               <Form.Control type="password" placeholder="Enter password" value={password} onChange={e => setPassword(e.target.value)}/>
             </Form.Group>
-            <Button onClick={() => onRegisterClick(true)} variant='link'>Create account</Button>
+            <Button onClick={() => props.onCreateAccountClick()} variant='link'>Create account</Button>
             <br/>
             <br/>
             <Button className="button" variant="primary" type="submit" onClick={handleSubmit}>
