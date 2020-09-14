@@ -26,6 +26,15 @@ export class MainView extends React.Component {
 
   // One of the "hooks" available in a React Component
   componentDidMount() {
+    let accessToken = localStorage.getItem('token');
+    if (accessToken !== null) {
+      this.setState({
+        user: localStorage.getItem('user')
+      });
+      this.getMovies(accessToken);
+    }
+  }
+  /*componentDidMount() {
     axios.get('https://myww2flixdb.herokuapp.com/movies')
       .then(response => {
         // Assign the result to the state
@@ -36,6 +45,21 @@ export class MainView extends React.Component {
       .catch(function (error) {
         console.log(error);
       });
+  }*/
+
+  getMovies(token) {
+    axios.get('https://myww2flixdb.herokuapp.com/movies', {
+      headers: { Authorization: `Bearer ${token}`}
+    })
+    .then(response => {
+      // Assign the result to the state
+      this.setState({
+        movies: response.data
+      });
+    })
+    .catch(function (error) {
+      console.log(error);
+    });
   }
 
   //Click function for clicking on MovieCard in MainView to show MovieView
@@ -52,16 +76,36 @@ export class MainView extends React.Component {
     });
   }
 
-  onLoggedIn(user) {
+  onLoggedIn(authData) {
+    console.log(authData)
+    this.setState({
+      user: authData.user.Username
+    });
+
+    localStorage.setItem('token', authData.token);
+    localStorage.setItem('user', authData.user.Username);
+    this.getMovies(authData.token);
+  }
+
+  /*onLoggedIn(user) {
     this.setState({
       user
+    });
+  }*/
+
+  //Logs user out via logout button in navbar by setting state back to !user or user: null
+  onLoggedOut = () => {
+    localStorage.removeItem('token');
+    localStorage.removeItem('user');
+    this.setState({
+      user: null
     });
   }
 
   render() {
     const { movies, selectedMovie, user } = this.state;
 
-    if (!user) return <UserView onLoggedIn={user => this.onLoggedIn(user)} />; //changed to UserView from LoginView
+    if (!user) return <UserView onLoggedIn={user => this.onLoggedIn(user)} />; //onLoggedIn prop passed down via prop drilling(UserView => LoginView)
 
     // Before the movies have been loaded
     if (!movies) return <div className="main-view">Loading Movies...</div>;
@@ -79,7 +123,7 @@ export class MainView extends React.Component {
               <Nav.Link href='#home'>Home</Nav.Link>
               <Nav.Link href='#profile'>Profile</Nav.Link>
               <Nav.Link href='#about'>About</Nav.Link>
-              <Nav.Link href='#logout'>Logout</Nav.Link>
+              <Nav.Link onClick={this.onLoggedOut} href='#logout'>Logout</Nav.Link>
             </Nav>
           </Navbar.Collapse>
         </Navbar>

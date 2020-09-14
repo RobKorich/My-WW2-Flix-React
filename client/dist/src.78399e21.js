@@ -33052,6 +33052,8 @@ var _Button = _interopRequireDefault(require("react-bootstrap/Button"));
 
 var _Card = _interopRequireDefault(require("react-bootstrap/Card"));
 
+var _axios = _interopRequireDefault(require("axios"));
+
 require("./login-view.scss");
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
@@ -33072,10 +33074,7 @@ function _iterableToArrayLimit(arr, i) { if (typeof Symbol === "undefined" || !(
 
 function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
 
-function LoginView(_ref) {
-  var onLoggedIn = _ref.onLoggedIn,
-      onCreateAccountClick = _ref.onCreateAccountClick;
-
+function LoginView(props) {
   var _useState = (0, _react.useState)(''),
       _useState2 = _slicedToArray(_useState, 2),
       username = _useState2[0],
@@ -33087,10 +33086,19 @@ function LoginView(_ref) {
       setPassword = _useState4[1];
 
   var handleSubmit = function handleSubmit(e) {
-    e.preventDefault();
-    console.log(username, password); // Send a request to the server for authentication then call props.onLoggedIn(username)
+    e.preventDefault(); //console.log(username, password);
+    // Send a request to the server for authentication then call props.onLoggedIn(username)
+    //props.onLoggedIn(username);
 
-    onLoggedIn(username);
+    _axios.default.post('https://myww2flixdb.herokuapp.com/login', {
+      Username: username,
+      Password: password
+    }).then(function (response) {
+      var data = response.data;
+      props.onLoggedIn(data);
+    }).catch(function (e) {
+      console.log('no such user');
+    });
   };
 
   return _react.default.createElement("div", null, _react.default.createElement("h2", {
@@ -33120,7 +33128,7 @@ function LoginView(_ref) {
     }
   })), _react.default.createElement(_Button.default, {
     onClick: function onClick() {
-      return onCreateAccountClick();
+      return props.onCreateAccountClick();
     },
     variant: "link"
   }, "Create account"), _react.default.createElement("br", null), _react.default.createElement("br", null), _react.default.createElement(_Button.default, {
@@ -33130,7 +33138,7 @@ function LoginView(_ref) {
     onClick: handleSubmit
   }, "Submit"))));
 }
-},{"react":"../node_modules/react/index.js","react-bootstrap/Form":"../node_modules/react-bootstrap/esm/Form.js","react-bootstrap/Button":"../node_modules/react-bootstrap/esm/Button.js","react-bootstrap/Card":"../node_modules/react-bootstrap/esm/Card.js","./login-view.scss":"components/login-view/login-view.scss"}],"components/registration-view/registration-view.scss":[function(require,module,exports) {
+},{"react":"../node_modules/react/index.js","react-bootstrap/Form":"../node_modules/react-bootstrap/esm/Form.js","react-bootstrap/Button":"../node_modules/react-bootstrap/esm/Button.js","react-bootstrap/Card":"../node_modules/react-bootstrap/esm/Card.js","axios":"../node_modules/axios/index.js","./login-view.scss":"components/login-view/login-view.scss"}],"components/registration-view/registration-view.scss":[function(require,module,exports) {
 var reloadCSS = require('_css_loader');
 
 module.hot.dispose(reloadCSS);
@@ -35965,6 +35973,15 @@ var MainView = /*#__PURE__*/function (_React$Component) {
       });
     };
 
+    _this.onLoggedOut = function () {
+      localStorage.removeItem('token');
+      localStorage.removeItem('user');
+
+      _this.setState({
+        user: null
+      });
+    };
+
     _this.state = {
       movies: null,
       selectedMovie: null,
@@ -35977,9 +35994,38 @@ var MainView = /*#__PURE__*/function (_React$Component) {
   _createClass(MainView, [{
     key: "componentDidMount",
     value: function componentDidMount() {
+      var accessToken = localStorage.getItem('token');
+
+      if (accessToken !== null) {
+        this.setState({
+          user: localStorage.getItem('user')
+        });
+        this.getMovies(accessToken);
+      }
+    }
+    /*componentDidMount() {
+      axios.get('https://myww2flixdb.herokuapp.com/movies')
+        .then(response => {
+          // Assign the result to the state
+          this.setState({
+            movies: response.data
+          });
+        })
+        .catch(function (error) {
+          console.log(error);
+        });
+    }*/
+
+  }, {
+    key: "getMovies",
+    value: function getMovies(token) {
       var _this2 = this;
 
-      _axios.default.get('https://myww2flixdb.herokuapp.com/movies').then(function (response) {
+      _axios.default.get('https://myww2flixdb.herokuapp.com/movies', {
+        headers: {
+          Authorization: "Bearer ".concat(token)
+        }
+      }).then(function (response) {
         // Assign the result to the state
         _this2.setState({
           movies: response.data
@@ -35999,11 +36045,22 @@ var MainView = /*#__PURE__*/function (_React$Component) {
 
   }, {
     key: "onLoggedIn",
-    value: function onLoggedIn(user) {
+    value: function onLoggedIn(authData) {
+      console.log(authData);
       this.setState({
-        user: user
+        user: authData.user.Username
       });
+      localStorage.setItem('token', authData.token);
+      localStorage.setItem('user', authData.user.Username);
+      this.getMovies(authData.token);
     }
+    /*onLoggedIn(user) {
+      this.setState({
+        user
+      });
+    }*/
+    //Logs user out via logout button in navbar by setting state back to !user or user: null
+
   }, {
     key: "render",
     value: function render() {
@@ -36017,7 +36074,7 @@ var MainView = /*#__PURE__*/function (_React$Component) {
         onLoggedIn: function onLoggedIn(user) {
           return _this3.onLoggedIn(user);
         }
-      }); //changed to UserView from LoginView
+      }); //onLoggedIn prop passed down via prop drilling(UserView => LoginView)
       // Before the movies have been loaded
 
       if (!movies) return _react.default.createElement("div", {
@@ -36052,6 +36109,7 @@ var MainView = /*#__PURE__*/function (_React$Component) {
       }, "Profile"), _react.default.createElement(_Nav.default.Link, {
         href: "#about"
       }, "About"), _react.default.createElement(_Nav.default.Link, {
+        onClick: this.onLoggedOut,
         href: "#logout"
       }, "Logout")))), selectedMovie ? _react.default.createElement(_movieView.MovieView, {
         movie: selectedMovie,
@@ -36168,7 +36226,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "59548" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "60718" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};
