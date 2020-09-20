@@ -85,7 +85,8 @@ export class ProfileView extends React.Component {
           <Card>
             <Card.Body>
               <Card.Title>Update Profile</Card.Title>
-              <Button className='button' onClick={this.deleteUser}>Delete Account</Button>
+              <br/>
+              <Button className='deleteButton' variant='danger' onClick={this.deleteUser}>Delete Account</Button>
              </Card.Body>
           </Card>
 

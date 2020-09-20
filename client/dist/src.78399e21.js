@@ -35945,8 +35945,9 @@ var ProfileView = /*#__PURE__*/function (_React$Component) {
       var movies = this.props.movies;
       return _react.default.createElement("div", null, _react.default.createElement(_Container.default, null, _react.default.createElement("h2", {
         className: "profile-title"
-      }, "My Profile"), _react.default.createElement(_Card.default, null, _react.default.createElement(_Card.default.Body, null, _react.default.createElement(_Card.default.Title, null, "Account Information"), _react.default.createElement("br", null), _react.default.createElement(_Card.default.Text, null, "Username: ", this.state.Username), _react.default.createElement(_Card.default.Text, null, "Email: ", this.state.Email), _react.default.createElement(_Card.default.Text, null, "Birthday: ", this.state.Birthday), _react.default.createElement(_Card.default.Text, null, "Favorites: ", this.state.Favorites))), _react.default.createElement(_Card.default, null, _react.default.createElement(_Card.default.Body, null, _react.default.createElement(_Card.default.Title, null, "Update Profile"), _react.default.createElement(_Button.default, {
-        className: "button",
+      }, "My Profile"), _react.default.createElement(_Card.default, null, _react.default.createElement(_Card.default.Body, null, _react.default.createElement(_Card.default.Title, null, "Account Information"), _react.default.createElement("br", null), _react.default.createElement(_Card.default.Text, null, "Username: ", this.state.Username), _react.default.createElement(_Card.default.Text, null, "Email: ", this.state.Email), _react.default.createElement(_Card.default.Text, null, "Birthday: ", this.state.Birthday), _react.default.createElement(_Card.default.Text, null, "Favorites: ", this.state.Favorites))), _react.default.createElement(_Card.default, null, _react.default.createElement(_Card.default.Body, null, _react.default.createElement(_Card.default.Title, null, "Update Profile"), _react.default.createElement("br", null), _react.default.createElement(_Button.default, {
+        className: "deleteButton",
+        variant: "danger",
         onClick: this.deleteUser
       }, "Delete Account")))));
     }
@@ -39680,7 +39681,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "55807" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "57494" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};
