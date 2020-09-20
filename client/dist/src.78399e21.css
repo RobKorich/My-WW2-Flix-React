@@ -7,6 +7,10 @@
 .deleteButton {
   border-radius: 16px;
 }
+
+.profile-card {
+  border-radius: 16px;
+}
 .registration-title {
   color: #4b5320;
   text-align: center;
@@ -15,6 +19,7 @@
 
 .registration-card {
   max-width: 500px;
+  border-radius: 16px;
 }
 
 .main-view {
@@ -78,6 +83,10 @@ Form {
   color: #4b5320;
   text-align: center;
   margin-top: 70px;
+}
+
+.login-card {
+  border-radius: 16px !important;
 }
 
 .main-view {

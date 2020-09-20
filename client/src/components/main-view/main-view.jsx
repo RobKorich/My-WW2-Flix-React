@@ -132,7 +132,7 @@ export class MainView extends React.Component {
       <Router>
         <div className='main-view'>
           <Navbar className='navbar' bg='dark' fixed='top' variant='dark' expand='lg'>
-            <Navbar.Brand href='#home'>
+            <Navbar.Brand as={Link} to='/'>
               <img src='https://www.svgrepo.com/show/136105/movie-roll.svg' className='icon' width='30' height='30' alt='My WW2 Flix Logo'/>
               My WW2 Flix
             </Navbar.Brand>
