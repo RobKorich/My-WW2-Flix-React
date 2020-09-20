@@ -35907,7 +35907,7 @@ function UpdateView() {
 
   return _react.default.createElement("div", null, _react.default.createElement(_Card.default, {
     className: "update-card"
-  }, _react.default.createElement(_Form.default, null, _react.default.createElement(_Form.default.Group, {
+  }, _react.default.createElement(_Card.default.Body, null, _react.default.createElement(_Card.default.Title, null, "Update Account Information"), _react.default.createElement(_Form.default, null, _react.default.createElement(_Form.default.Group, {
     controlId: "formBasicUsername"
   }, _react.default.createElement(_Form.default.Label, null, "Username"), _react.default.createElement(_Form.default.Control, {
     type: "text",
@@ -35948,7 +35948,7 @@ function UpdateView() {
     variant: "primary",
     type: "submit",
     onClick: handleSubmit
-  }, "Update Information"))));
+  }, "Update Information")))));
 }
 },{"react":"../node_modules/react/index.js","react-bootstrap/Card":"../node_modules/react-bootstrap/esm/Card.js","react-bootstrap/Form":"../node_modules/react-bootstrap/esm/Form.js","axios":"../node_modules/axios/index.js","react-bootstrap/Button":"../node_modules/react-bootstrap/esm/Button.js","./update-card.scss":"components/update-card/update-card.scss"}],"components/profile-view/profile-view.scss":[function(require,module,exports) {
 var reloadCSS = require('_css_loader');
@@ -36082,13 +36082,13 @@ var ProfileView = /*#__PURE__*/function (_React$Component) {
         className: "profile-title"
       }, "My Profile"), _react.default.createElement(_Card.default, {
         className: "profile-card"
-      }, _react.default.createElement(_Card.default.Body, null, _react.default.createElement(_Card.default.Title, null, "Account Information"), _react.default.createElement("br", null), _react.default.createElement(_Card.default.Text, null, "Username: ", this.state.Username), _react.default.createElement(_Card.default.Text, null, "Email: ", this.state.Email), _react.default.createElement(_Card.default.Text, null, "Birthday: ", this.state.Birthday), _react.default.createElement(_Card.default.Text, null, "Favorites: ", this.state.Favorites))), _react.default.createElement(_Card.default, {
+      }, _react.default.createElement(_Card.default.Body, null, _react.default.createElement(_Card.default.Title, null, "Account Information"), _react.default.createElement("br", null), _react.default.createElement(_Card.default.Text, null, "Username: ", this.state.Username), _react.default.createElement(_Card.default.Text, null, "Email: ", this.state.Email), _react.default.createElement(_Card.default.Text, null, "Birthday: ", this.state.Birthday), _react.default.createElement(_Card.default.Text, null, "Favorites: ", this.state.Favorites))), _react.default.createElement(_updateCard.UpdateView, null), _react.default.createElement(_Card.default, {
         className: "profile-card"
-      }, _react.default.createElement(_Card.default.Body, null, _react.default.createElement(_Card.default.Title, null, "Update Account Information"), _react.default.createElement("br", null), _react.default.createElement(_Button.default, {
+      }, _react.default.createElement(_Card.default.Body, null, _react.default.createElement(_Card.default.Title, null, "Delete Account"), _react.default.createElement("br", null), _react.default.createElement(_Button.default, {
         className: "deleteButton",
         variant: "danger",
         onClick: this.deleteUser
-      }, "Delete Account")))), _react.default.createElement(_updateCard.UpdateView, null));
+      }, "Delete Account")))));
     }
   }]);
 
@@ -39823,7 +39823,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "50761" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "50836" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};

@@ -83,15 +83,16 @@ export class ProfileView extends React.Component {
               <Card.Text>Favorites: {this.state.Favorites}</Card.Text>
             </Card.Body>
           </Card>
+          <UpdateView/>
           <Card className='profile-card'>
             <Card.Body>
-              <Card.Title>Update Account Information</Card.Title>
+              <Card.Title>Delete Account</Card.Title>
               <br/>
               <Button className='deleteButton' variant='danger' onClick={this.deleteUser}>Delete Account</Button>
              </Card.Body>
           </Card>
         </Container>
-        <UpdateView/>
+        
       </div>
     );
   }

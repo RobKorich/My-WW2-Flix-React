@@ -39,49 +39,52 @@ export function UpdateView() {
   return (
     <div>
       <Card className='update-card'>
-        <Form>
-          <Form.Group controlId='formBasicUsername'>
-            <Form.Label>Username</Form.Label>
-            <Form.Control
-              type='text'
-              placeholder='Username'
-              value={Username}
-              onChange={(e) => createUsername(e.target.value)}
-              />
-          </Form.Group>
-          <Form.Group controlId='formBasicPassword'>
-            <Form.Label>Password</Form.Label>
-            <Form.Control
-              type='password'
-              placeholder='Password'
-              value={Password}
-              onChange={(e) => createPassword(e.target.value)}
-              />
-          </Form.Group>
-          <Form.Group controlId="formBasicEmail">
-            <Form.Label>Email address</Form.Label>
-            <Form.Control
-              type="email"
-              placeholder="Enter email"
-              value={Email}
-              onChange={(e) => createEmail(e.target.value)}
-            />
-          </Form.Group>
-          <Form.Group controlId="formBasicDob">
-            <Form.Label>Birthday</Form.Label>
-            <Form.Control
-              type="date"
-              placeholder="MM/DD/YYYY"
-              value={Birthday}
-              onChange={(e) => createBirthday(e.target.value)}
-            />
-          </Form.Group>
-          <Button className="button" variant="primary" type="submit" onClick={handleSubmit}>
-            Update Information
-          </Button>
-        </Form>
-      </Card>
-    </div>
+        <Card.Body>
+          <Card.Title>Update Account Information</Card.Title>
+            <Form>
+              <Form.Group controlId='formBasicUsername'>
+                <Form.Label>Username</Form.Label>
+                <Form.Control
+                  type='text'
+                  placeholder='Username'
+                  value={Username}
+                  onChange={(e) => createUsername(e.target.value)}
+                  />
+              </Form.Group>
+              <Form.Group controlId='formBasicPassword'>
+                <Form.Label>Password</Form.Label>
+                <Form.Control
+                  type='password'
+                  placeholder='Password'
+                  value={Password}
+                  onChange={(e) => createPassword(e.target.value)}
+                  />
+              </Form.Group>
+              <Form.Group controlId="formBasicEmail">
+                <Form.Label>Email address</Form.Label>
+                <Form.Control
+                  type="email"
+                  placeholder="Enter email"
+                  value={Email}
+                  onChange={(e) => createEmail(e.target.value)}
+                />
+              </Form.Group>
+              <Form.Group controlId="formBasicDob">
+                <Form.Label>Birthday</Form.Label>
+                <Form.Control
+                  type="date"
+                  placeholder="MM/DD/YYYY"
+                  value={Birthday}
+                  onChange={(e) => createBirthday(e.target.value)}
+                />
+              </Form.Group>
+              <Button className="button" variant="primary" type="submit" onClick={handleSubmit}>
+                Update Information
+              </Button>
+              </Form>
+          </Card.Body>
+        </Card>
+      </div>
   );
 
 }
