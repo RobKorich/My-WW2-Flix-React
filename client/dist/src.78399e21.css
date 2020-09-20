@@ -1,3 +1,16 @@
+.registration-title {
+  color: #4b5320;
+  text-align: center;
+  margin-top: 70px;
+}
+
+.registration-card {
+  max-width: 500px;
+}
+
+.main-view {
+  justify-content: center;
+}
 .button {
   background-color: #4b5320;
   border-color: #4b5320;
@@ -55,16 +68,11 @@ Form {
 .login-title {
   color: #4b5320;
   text-align: center;
-  margin-top: 30px;
-}
-.registration-title {
-  color: #4b5320;
-  text-align: center;
-  margin-top: 30px;
+  margin-top: 70px;
 }
 
-.registration-card {
-  max-width: 500px;
+.main-view {
+  justify-content: center;
 }
 .navbar {
   background-color: #4b5320 !important;
@@ -75,6 +83,7 @@ Form {
 }
 
 .main-view {
+  justify-content: center;
   display: flex;
   flex-direction: row;
   flex-wrap: wrap;

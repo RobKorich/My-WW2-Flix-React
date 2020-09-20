@@ -14,9 +14,23 @@ export function RegistrationView(props) {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    console.log(Username, Password, Email, Birthday);
 
-     //needs finishing
+    axios.post('https://myww2flixdb.herokuapp.com/users', {
+      Username: Username,
+      Password: Password,
+      Email: Email,
+      Birthday: Birthday
+    })
+    .then(response => {
+      const data = response.data;
+      alert('Account created successfully! Please login');
+      console.log(data);
+      window.open('/', '_self'); // the second argument '_self' is necessary so that the page will open in the current tab
+    })
+    .catch(e => {
+      console.log('error registering the user')
+    });
+    console.log(Username, Password, Email, Birthday);
   }
 
   return (

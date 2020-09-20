@@ -6,6 +6,8 @@ import Container from 'react-bootstrap/Container';
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
 
+import { Link } from 'react-router-dom';
+
 import './movie-view.scss';
 
 export class MovieView extends React.Component {
@@ -18,7 +20,7 @@ export class MovieView extends React.Component {
   }
 
   render() {
-    const { movie, unsetMovie } = this.props;
+    const { movie } = this.props;
 
     if (!movie) return null;
 
@@ -26,14 +28,27 @@ export class MovieView extends React.Component {
       <Container>
         <Row>
           <Col>
-            <Card className="cardMovieView" style={{ width: '45rem' }}>
-              <Card.Img variant="top" src={movie.ImagePath}/>
+            <Card className='cardMovieView' style={{ width: '45rem' }}>
+              <Card.Img variant='top' src={movie.ImagePath}/>
               <Card.Body>
                 <Card.Title>{movie.Title}</Card.Title>
                 <Card.Text>{movie.Description}</Card.Text>
                 <Card.Text>Genre: {movie.Genre.Name}</Card.Text>
+                <Link to={`/movies/genres/${movie.Genre.Name}`}>
+                  <Button className='button' variant='primary'>Genre Details</Button>
+                </Link>
+                <br/>
+                <br/>
                 <Card.Text>Director: {movie.Director.Name}</Card.Text>
-                <Button className="button" onClick={unsetMovie} variant="primary">Back</Button>
+                <Link to={`/movies/directors/${movie.Director.Name}`}>
+                  <Button className='button' variant='primary'>Director Details</Button>
+                </Link>
+                <br/>
+                <br/>
+                <br/>
+                <Link to={`/`}>
+                  <Button className='button' variant='primary'>Back</Button>
+                </Link>
               </Card.Body>
             </Card>
             </Col>
@@ -43,7 +58,7 @@ export class MovieView extends React.Component {
   }
 }
 
-MovieView.propTypes = {
+/*MovieView.propTypes = {
   movie: PropTypes.shape({
     Title: PropTypes.string.isRequired,
     Description: PropTypes.string.isRequired,
@@ -58,4 +73,4 @@ MovieView.propTypes = {
     })
   }).isRequired,
   unsetMovie: PropTypes.func.isRequired
-};
+};*/

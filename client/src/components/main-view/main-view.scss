@@ -8,7 +8,8 @@ $button: #4b5320;
   margin-right: 10px;
 }
 
-.main-view { 
+.main-view {
+  justify-content: center;
   display: flex;
   flex-direction: row;
   flex-wrap: wrap;
