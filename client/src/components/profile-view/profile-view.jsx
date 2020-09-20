@@ -4,7 +4,7 @@ import Card from 'react-bootstrap/Card';
 import Button from 'react-bootstrap/Button';
 import Container from 'react-bootstrap/Container';
 import Form from 'react-bootstrap/Form';
-import { UpdateView } from '../update-card/update-card';
+import { UpdateCard } from '../update-card/update-card';
 
 import './profile-view.scss';
 
@@ -83,7 +83,7 @@ export class ProfileView extends React.Component {
               <Card.Text>Favorites: {this.state.Favorites}</Card.Text>
             </Card.Body>
           </Card>
-          <UpdateView/>
+          <UpdateCard/>
           <Card className='profile-card'>
             <Card.Body>
               <Card.Title>Delete Account</Card.Title>
@@ -92,7 +92,6 @@ export class ProfileView extends React.Component {
              </Card.Body>
           </Card>
         </Container>
-        
       </div>
     );
   }

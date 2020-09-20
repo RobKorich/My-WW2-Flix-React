@@ -35828,7 +35828,7 @@ module.hot.accept(reloadCSS);
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
-exports.UpdateView = UpdateView;
+exports.UpdateCard = UpdateCard;
 
 var _react = _interopRequireWildcard(require("react"));
 
@@ -35860,7 +35860,7 @@ function _iterableToArrayLimit(arr, i) { if (typeof Symbol === "undefined" || !(
 
 function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
 
-function UpdateView() {
+function UpdateCard() {
   var _useState = (0, _react.useState)(''),
       _useState2 = _slicedToArray(_useState, 2),
       Username = _useState2[0],
@@ -35887,17 +35887,19 @@ function UpdateView() {
     var accessToken = localStorage.getItem('token');
 
     _axios.default.put("https://myww2flixdb.herokuapp.com/users/".concat(username), {
-      headers: {
-        Authorization: "Bearer ".concat(accessToken)
-      },
       Username: Username,
       Password: Password,
       Email: Email,
       Birthday: Birthday
+    }, {
+      headers: {
+        Authorization: "Bearer ".concat(accessToken)
+      }
     }).then(function (response) {
       var data = response.data;
       alert('Account updated successfully!');
       console.log(data);
+      window.open('/', '_self');
     }).catch(function (e) {
       console.log('error updating the user information');
     });
@@ -36082,7 +36084,7 @@ var ProfileView = /*#__PURE__*/function (_React$Component) {
         className: "profile-title"
       }, "My Profile"), _react.default.createElement(_Card.default, {
         className: "profile-card"
-      }, _react.default.createElement(_Card.default.Body, null, _react.default.createElement(_Card.default.Title, null, "Account Information"), _react.default.createElement("br", null), _react.default.createElement(_Card.default.Text, null, "Username: ", this.state.Username), _react.default.createElement(_Card.default.Text, null, "Email: ", this.state.Email), _react.default.createElement(_Card.default.Text, null, "Birthday: ", this.state.Birthday), _react.default.createElement(_Card.default.Text, null, "Favorites: ", this.state.Favorites))), _react.default.createElement(_updateCard.UpdateView, null), _react.default.createElement(_Card.default, {
+      }, _react.default.createElement(_Card.default.Body, null, _react.default.createElement(_Card.default.Title, null, "Account Information"), _react.default.createElement("br", null), _react.default.createElement(_Card.default.Text, null, "Username: ", this.state.Username), _react.default.createElement(_Card.default.Text, null, "Email: ", this.state.Email), _react.default.createElement(_Card.default.Text, null, "Birthday: ", this.state.Birthday), _react.default.createElement(_Card.default.Text, null, "Favorites: ", this.state.Favorites))), _react.default.createElement(_updateCard.UpdateCard, null), _react.default.createElement(_Card.default, {
         className: "profile-card"
       }, _react.default.createElement(_Card.default.Body, null, _react.default.createElement(_Card.default.Title, null, "Delete Account"), _react.default.createElement("br", null), _react.default.createElement(_Button.default, {
         className: "deleteButton",
@@ -39823,7 +39825,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "50836" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "51378" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};

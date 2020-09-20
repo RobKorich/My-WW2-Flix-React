@@ -6,7 +6,7 @@ import Button from 'react-bootstrap/Button';
 
 import './update-card.scss';
 
-export function UpdateView() {
+export function UpdateCard() {
   const [Username, createUsername] = useState('');
   const [Password, createPassword] = useState('');
   const [Email, createEmail] = useState('');
@@ -15,20 +15,23 @@ export function UpdateView() {
   const handleSubmit = (e) => {
     e.preventDefault();
 
-    let username = localStorage.getItem('user');
+    let username =localStorage.getItem('user');
     let accessToken = localStorage.getItem('token');
-
+   
     axios.put(`https://myww2flixdb.herokuapp.com/users/${username}`, {
-      headers: { Authorization: `Bearer ${accessToken}`},
       Username: Username,
       Password: Password,
       Email: Email,
       Birthday: Birthday
+    },
+    { 
+      headers: { Authorization: `Bearer ${accessToken}`},
     })
     .then(response => {
       const data = response.data;
       alert('Account updated successfully!');
       console.log(data);
+      window.open('/', '_self');
     })
     .catch(e => {
       console.log('error updating the user information')
