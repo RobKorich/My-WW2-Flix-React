@@ -3,6 +3,7 @@ import Form from 'react-bootstrap/Form';
 import Button from 'react-bootstrap/Button';
 import Card from 'react-bootstrap/Card';
 import axios from 'axios';
+import { Link } from 'react-router-dom';
 
 import './login-view.scss';
 
@@ -12,9 +13,7 @@ export function LoginView(props) {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    //console.log(username, password);
-    // Send a request to the server for authentication then call props.onLoggedIn(username)
-    //props.onLoggedIn(username);
+    
     axios.post('https://myww2flixdb.herokuapp.com/login', {
       Username: username,
       Password: password
@@ -47,7 +46,9 @@ export function LoginView(props) {
               <Form.Label>Password</Form.Label>
               <Form.Control type="password" placeholder="Enter password" value={password} onChange={e => setPassword(e.target.value)}/>
             </Form.Group>
-            <Button onClick={() => props.onCreateAccountClick()} variant='link'>Create account</Button>
+            <Link to={`/register`}>
+              <Button variant='link'>Create account</Button>
+            </Link>
             <br/>
             <br/>
             <Button className="button" variant="primary" type="submit" onClick={handleSubmit}>
