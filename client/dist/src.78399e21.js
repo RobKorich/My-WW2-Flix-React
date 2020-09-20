@@ -35879,13 +35879,33 @@ var ProfileView = /*#__PURE__*/function (_React$Component) {
     _classCallCheck(this, ProfileView);
 
     _this = _super.call(this, props);
+
+    _this.deleteUser = function () {
+      var username = localStorage.getItem('user');
+      var accessToken = localStorage.getItem('token');
+
+      _axios.default.delete("https://myww2flixdb.herokuapp.com/users/".concat(username), {
+        headers: {
+          Authorization: "Bearer ".concat(accessToken)
+        }
+      }).then(function (response) {
+        var data = response.data;
+        localStorage.removeItem('token');
+        localStorage.removeItem('user');
+        alert('Account has been deleted!');
+        console.log(data);
+        window.open('/', '_self');
+      }).catch(function (e) {
+        console.log('error deleting account');
+      });
+    };
+
     _this.state = {
       Username: null,
       Password: null,
       Email: null,
       Birthday: null,
-      Favorites: [],
-      Movies: []
+      Favorites: []
     };
     return _this;
   }
@@ -35925,7 +35945,10 @@ var ProfileView = /*#__PURE__*/function (_React$Component) {
       var movies = this.props.movies;
       return _react.default.createElement("div", null, _react.default.createElement(_Container.default, null, _react.default.createElement("h2", {
         className: "profile-title"
-      }, "My Profile"), _react.default.createElement(_Card.default, null, _react.default.createElement(_Card.default.Body, null, _react.default.createElement(_Card.default.Title, null, "Account Information"), _react.default.createElement("br", null), _react.default.createElement(_Card.default.Text, null, "Username: ", this.state.Username), _react.default.createElement(_Card.default.Text, null, "Email: ", this.state.Email), _react.default.createElement(_Card.default.Text, null, "Birthday: ", this.state.Birthday), _react.default.createElement(_Card.default.Text, null, "Favorites: ", this.state.Favorites))), _react.default.createElement(_Card.default, null, _react.default.createElement(_Card.default.Body, null, _react.default.createElement(_Card.default.Title, null, "Update Profile"), _react.default.createElement(_Form.default, null)))));
+      }, "My Profile"), _react.default.createElement(_Card.default, null, _react.default.createElement(_Card.default.Body, null, _react.default.createElement(_Card.default.Title, null, "Account Information"), _react.default.createElement("br", null), _react.default.createElement(_Card.default.Text, null, "Username: ", this.state.Username), _react.default.createElement(_Card.default.Text, null, "Email: ", this.state.Email), _react.default.createElement(_Card.default.Text, null, "Birthday: ", this.state.Birthday), _react.default.createElement(_Card.default.Text, null, "Favorites: ", this.state.Favorites))), _react.default.createElement(_Card.default, null, _react.default.createElement(_Card.default.Body, null, _react.default.createElement(_Card.default.Title, null, "Update Profile"), _react.default.createElement(_Button.default, {
+        className: "button",
+        onClick: this.deleteUser
+      }, "Delete Account")))));
     }
   }]);
 
@@ -39346,10 +39369,7 @@ var MainView = /*#__PURE__*/function (_React$Component) {
     _this.onLoggedOut = function () {
       localStorage.removeItem('token');
       localStorage.removeItem('user');
-
-      _this.setState({
-        user: null
-      });
+      window.open('/', '_self');
     };
 
     _this.state = {
@@ -39660,7 +39680,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "54251" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "55807" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};

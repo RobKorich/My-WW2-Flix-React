@@ -17,13 +17,32 @@ export class ProfileView extends React.Component {
       Email: null,
       Birthday: null,
       Favorites: [],
-      Movies: []
     };
   }
 
   componentDidMount() {
     let accessToken = localStorage.getItem('token');
     this.getUser(accessToken);
+  }
+
+  deleteUser = () => {
+    let username =localStorage.getItem('user');
+    let accessToken = localStorage.getItem('token');
+
+    axios.delete(`https://myww2flixdb.herokuapp.com/users/${username}`, {
+      headers: { Authorization: `Bearer ${accessToken}`}
+    })
+    .then(response => {
+      const data = response.data;
+      localStorage.removeItem('token');
+      localStorage.removeItem('user');
+      alert('Account has been deleted!');
+      console.log(data);
+      window.open ('/', '_self');
+    })
+    .catch(e => {
+      console.log('error deleting account')
+    });
   }
 
   getUser(token) {
@@ -66,9 +85,7 @@ export class ProfileView extends React.Component {
           <Card>
             <Card.Body>
               <Card.Title>Update Profile</Card.Title>
-              <Form>
-
-              </Form>
+              <Button className='button' onClick={this.deleteUser}>Delete Account</Button>
              </Card.Body>
           </Card>
 
